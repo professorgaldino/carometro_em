@@ -1,235 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carômetro-EM</title>
-    <style>
-        /* Estilos gerais */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <title>Pasta Google Drive</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      color: #030303;
+    }
 
-        /* Cabeçalho institucional */
-        .header {
-            background-color: white;
-            width: 100%;
-            padding: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
 
-        .header img {
-            max-width: 180px;
-        }
+    .logo-container {
+      background-color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
 
-        /* Área de introdução */
-        .intro {
-            margin-top: 20px;
-            text-align: center;
-            max-width: 600px;
-            padding: 0 20px;
-        }
+    .logo {
+      width: 100px;
+      height: auto;
+    }
 
-        .intro h1 {
-            font-size: 28px;
-            color: #2259f2;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+    header {
+      background-color: #2259f2;
+      color: #ffffff;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      position: relative;
+    }
 
-        .intro p {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.5;
-        }
+    header::after {
+      content: '';
+      display: block;
+      height: 5px;
+      background-color: #eabf32;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
 
-        /* Botões de navegação */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .button-container button {
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 6px;
-            color: white;
-        }
-
-        .button-container button:nth-child(1) { background-color: #e8c032; }
-        .button-container button:nth-child(2) { background-color: #ed2c0d; }
-        .button-container button:nth-child(3) { background-color: #2259f2; }
-        .button-container button:nth-child(4) { background-color: #030206; }
-        .button-container button:nth-child(5) { background-color: #0d730d; }
-
-        .button-container button:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
-        }
-
-        /* Área da imagem */
-        .img-container {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-            padding: 10px;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .img-container p {
-            font-size: 18px;
-            font-weight: bold;
-            color: #777;
-            text-align: center;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: none;
-        }
-
-        /* Botão de navegação entre imagens */
-        .nav-buttons {
-            margin-top: 10px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .nav-buttons button {
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            background-color: #2259f2;
-            color: white;
-            display: none;
-        }
-
-        .nav-buttons button:hover {
-            background-color: #1a47c4;
-        }
-    </style>
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-
-<!-- Cabeçalho com Logo -->
-<div class="header">
-    <img src="logoescola.png" alt="Logo da Escola">
-</div>
-
-<!-- Introdução ao Carômetro -->
-<div class="intro">
-    <h1>Carômetro Ensino Médio</h1>
-    <p>O Carômetro permite que você conheça melhor seus alunos. Aqui, valorizamos a comunidade escolar, incentivando a interação e o pertencimento.</p>
-</div>
-
-<!-- Botões -->
-<div class="button-container">
-    <button onclick="changeImage('1a')">1A</button>
-    <button onclick="changeImage('2a')">2A</button>
-    <button onclick="changeImage('1b')">1B</button>
-    <button onclick="changeImage('3a')">3A</button>
-    <button onclick="changeImage('3adm')">3ADM</button>
-</div>
-
-<!-- Área para exibição das imagens -->
-<div class="img-container">
-    <p id="message">Escolha uma sala para ver os alunos</p>
-    <img id="displayImage" src="" alt="Imagem do Carômetro">
-    <div class="nav-buttons">
-        <button onclick="prevImage()">◀ Anterior</button>
-        <button onclick="nextImage()">Próximo ▶</button>
+  <div class="container">
+    <div class="logo-container">
+      <img src="logoescola.png" alt="Logo da Escola" class="logo" />
     </div>
-</div>
 
-<script>
-    let images = {
-        "1a": ["c1a1.png", "c1a2.png"],
-        "2a": ["c2.png"],
-        "1b": ["c1b1.png", "c1b2.png"],
-        "3a": ["c3.png"],
-        "3adm": ["c3adm.png"]
-    };
+    <header>Carômetro Ensino Médio</header>
 
-    let currentCategory = "";
-    let currentIndex = 0;
-
-    function changeImage(category) {
-        currentCategory = category;
-        currentIndex = 0;
-
-        if (images[category].length > 0) {
-            document.getElementById("displayImage").src = images[category][currentIndex];
-            document.getElementById("displayImage").style.display = "block";
-            document.getElementById("message").style.display = "none";
-            updateNavButtons();
-        }
-    }
-
-    function updateNavButtons() {
-        let prevButton = document.querySelector(".nav-buttons button:nth-child(1)");
-        let nextButton = document.querySelector(".nav-buttons button:nth-child(2)");
-
-        if (images[currentCategory].length > 1) {
-            prevButton.style.display = "inline-block";
-            nextButton.style.display = "inline-block";
-        } else {
-            prevButton.style.display = "none";
-            nextButton.style.display = "none";
-        }
-
-        prevButton.disabled = currentIndex === 0;
-        nextButton.disabled = currentIndex === images[currentCategory].length - 1;
-    }
-
-    function prevImage() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            document.getElementById("displayImage").src = images[currentCategory][currentIndex];
-            updateNavButtons();
-        }
-    }
-
-    function nextImage() {
-        if (currentIndex < images[currentCategory].length - 1) {
-            currentIndex++;
-            document.getElementById("displayImage").src = images[currentCategory][currentIndex];
-            updateNavButtons();
-        }
-    }
-</script>
-
+    <iframe 
+      src="https://drive.google.com/embeddedfolderview?id=1iiEjV0zYbyqyFlYioTZXYanK9PKHlvco#grid"
+      allow="autoplay">
+    </iframe>
+  </div>
 </body>
 </html>
